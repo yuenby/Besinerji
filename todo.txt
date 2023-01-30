@@ -1,0 +1,15 @@
+1.tüm bilgisayarlarda çalışması için path 
+
+2.yeni database'e geçiş
+
+3.getInfoya yeni bilgilerin eklenmesi
+
+4.yeni danışan ekleme formunun tamamlanması
+
+
+
+
+
+
+kilo vs bilgilerinin kaydedilmesi
+getInfo page'e kilo bilgilerinin eklenmesi

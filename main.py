@@ -1,4 +1,3 @@
-from re import search
 import sys
 import sqlite3
 import time
@@ -7,41 +6,40 @@ from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QMainWindow, QLabel, QPushButton, QComboBox
 
-class MainScreen(QMainWindow):
-    searchButtons = []
-    hastaInfo = []
+class MainScreen(QMainWindow):                  #MainScreen CLass
+    searchButtons = []                          #Search Results List (QPushButton) 
 
-    returnDanisanIdFunc = lambda button: button.text()
-
-    def __init__(self):
+    def __init__(self):                         #Initialization of Main Screen and UI
         super(MainScreen, self).__init__()
-        self.initUI()
         self.setWindowTitle("Besinerji")
         
-    def initUI(self):
+                                                #UI
         loadUi("mainWindow.ui", self)
-
         self.showMaximized()
         self.stackedWidget.setCurrentIndex(0)
-
         self.butonAnasayfa.clicked.connect(self.anasayfaFunc)
         self.logoButton.clicked.connect(self.anasayfaFunc)
         self.lineEdit.textChanged.connect(self.getNames)
         self.danisanEkle.clicked.connect(self.danisanEkleFunc)
 
-    def getNames(self):
-        for result in self.searchButtons:
+    def getNames(self):                         
+        #Triggered when search lineEdit is updated
+        #Fetchs the data from database for a search result
+        #Generates QpushButtons for the search result and places on the screen
+
+        #Deletes old query result and buttons
+        for result in self.searchButtons:           
             #print(self.searchButtons)
             result.deleteLater()
         
         self.searchButtons = []
+
+        #Initializes query as the searchbar text
         query = self.lineEdit.text()
-        #print(query)
 
+        #Fetches the data from the danışanlar.db
         conn = sqlite3.connect('Danışanlar.db')
-
         c = conn.cursor()
-
         c.execute("""SELECT 
                         ID, İsim, Soyisim, Hastalıklar 
                     FROM 
@@ -50,16 +48,19 @@ class MainScreen(QMainWindow):
                         İsim || ' ' || Soyisim LIKE '%' || ? || '%'
                         AND 0 != LENGTH(?)
                     """, (query, query))
-
         info = c.fetchall()
         
+        #For every query result
+        #Generates a button and places it on the screen
+        #Also connects buttons to the Infopage function with necessary parameters
 
         for i in range(len(info)):
-            tempbutton = QPushButton(self)
-            tempbutton.setGeometry(550, 440 + i*65, 1111, 65)
-            tempbutton.setText( "(" + str(info[i][0]) + ") " + info[i][1] + " " + info[i][2]) 
-            #print(info[i][1] + " " + info[i][2])
-            stylesheetstring = """border-style: solid;
+            tempbutton = QPushButton(self)                                                      
+            tempbutton.setGeometry(550, 440 + i*65, 1111, 65)                                   #i*65 is for the vertical displacement of the new button
+            tempbutton.setText( "(" + str(info[i][0]) + ") " + info[i][1] + " " + info[i][2])   
+
+            #Template stylesheet
+            stylesheetstring = """border-style: solid;                                          
                         border-width: 5px;
                         border-color: orange;
                         font:20px;
@@ -80,15 +81,15 @@ class MainScreen(QMainWindow):
                 stylesheetstring += "\nbackground-color:rgb(240, 240, 240);" 
 
             tempbutton.setStyleSheet(stylesheetstring)
-            # tempbutton.clicked.connect(self.infoPage)
-            tempbutton.clicked.connect(lambda state, _info=info[i]: self.infoPage(_info))
 
+            #Passes the selected query row (info) to the infoPage function for the new page to display
+            tempbutton.clicked.connect(lambda state, _info=info[i]: self.infoPage(_info))
+            
             self.searchButtons.append(tempbutton)
             self.searchButtons[i].show()
 
         conn.commit()
         conn.close()
-        # print(info)
         
     def infoPage(self, info):
         #print(info)
@@ -99,11 +100,8 @@ class MainScreen(QMainWindow):
         self.stackedWidget.setCurrentIndex(1)
         self.lineEdit.setText("")
         
-
         self.hastaAdi.setText(info[1] + " " + info[2])
 
-    list = []
-    pageIndex = 0
     
     def anasayfaFunc(self):
         for result in self.searchButtons:
@@ -146,8 +144,6 @@ class MainScreen(QMainWindow):
             
 
         form.pushButtonKaydet.clicked.connect(sendFormData)
-
-
 
 #Main
 app = QApplication(sys.argv)
