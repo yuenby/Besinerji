@@ -1,10 +1,14 @@
 import sys
+import os
 import sqlite3
 import time
 from turtle import delay
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QMainWindow, QLabel, QPushButton, QComboBox
+
+general_path = os.path.abspath(os.path.dirname(__file__))    #The path to the main folder
+
 
 class MainScreen(QMainWindow):                  #MainScreen CLass
     searchButtons = []                          #Search Results List (QPushButton) 
@@ -14,7 +18,7 @@ class MainScreen(QMainWindow):                  #MainScreen CLass
         self.setWindowTitle("Besinerji")
         
                                                 #UI
-        loadUi("mainWindow.ui", self)
+        loadUi(os.path.join(general_path,"mainWindow.ui"), self)
         self.showMaximized()
         self.stackedWidget.setCurrentIndex(0)
         self.butonAnasayfa.clicked.connect(self.anasayfaFunc)
@@ -38,7 +42,7 @@ class MainScreen(QMainWindow):                  #MainScreen CLass
         query = self.lineEdit.text()
 
         #Fetches the data from the danışanlar.db
-        conn = sqlite3.connect('Danışanlar.db')
+        conn = sqlite3.connect(os.path.join(general_path,"Danışanlar.db"))
         c = conn.cursor()
         c.execute("""SELECT 
                         ID, İsim, Soyisim, Hastalıklar 
@@ -113,14 +117,14 @@ class MainScreen(QMainWindow):                  #MainScreen CLass
 
     def danisanEkleFunc(self):
         form = QDialog(self)
-        loadUi("Danışan Ekleme Formu.ui", form)
+        loadUi(os.path.join(general_path,"Danışan Ekleme Formu.ui"), form)
         form.showNormal()
 
         # if isim & soyisim & telefon & yas:
         #     print ("ad soyad telefon ve yas kutucukları boş bırakılamaz")
 
         def sendFormData():
-            conn = sqlite3.connect('Danışanlar2.db')
+            conn = sqlite3.connect(os.path.join(general_path,"Danışanlar2.db"))
             c = conn.cursor() 
             c.execute("SELECT * FROM Danışanlar ORDER BY ID DESC LIMIT 1;")
             max_id = c. fetchall()
