@@ -9,9 +9,9 @@
 5. [License](#License)
 
 ### Information <a name="GeneralInfo"></a>
-- This app  is created in order to offer help for dietitians about managing their patient data.
+- This app is created in order to offer help for dietitians about managing their patient data.
 - With this app, dietitians can create databases for patients, update the informations of patients and take notes about patients etc.
-- Namely, this app gives a fast solution to all the needs of dietitians and relieve them from the heavy work. 
+- Namely, this app gives a fast solution to dietitians about tracking their patients progress and relieve them from the heavy work with a friendly user interface. 
 
 ### Setup <a name="Setup"></a>
 To start using the app:
@@ -26,8 +26,8 @@ To start using the app:
 - This is an ongoing project.
 
 ### Authors  <a name="Authors"></a>
--yuenby
--dor-uk
+- yuenby
+- dor-uk
 
 ### License  <a name="License"></a>
 [MIT](https://choosealicense.com/licenses/mit/)
