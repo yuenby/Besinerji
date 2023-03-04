@@ -1,5 +1,5 @@
 # Besinerji Dietitian App
-- This is a asisstance app for dietitians that created with Python.
+- This is a asisstance app for dietitians that created with Python via using Pyqt5 and Sqlite.
 
 ## Table of Contents
 1. [Information](#GeneralInfo)
@@ -20,3 +20,14 @@ To start using the app:
   ```bash
   python3 main.py
   ``` 
+  or just open main.py with any editor and run it.
+
+### Status  <a name="Status"></a>
+- This is an ongoing project.
+
+### Authors  <a name="Authors"></a>
+-yuenby
+-dor-uk
+
+### License  <a name="License"></a>
+[MIT](https://choosealicense.com/licenses/mit/)
