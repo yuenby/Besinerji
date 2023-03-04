@@ -8,12 +8,12 @@
 4. [Authors](#Authors)
 5. [License](#License)
 
-### [Information] <a name="GeneralInfo"></a>
+### Information <a name="GeneralInfo"></a>
 - This app is created in order to offer help for dietitians about managing their patient data.
 - With this app, dietitians can create databases for patients, update the informations of patients and take notes about patients etc.
 - Namely, this app gives a fast solution to dietitians about tracking their patients progress and relieve them from the heavy work with a friendly user interface. 
 
-### [Setup] <a name="Setup"></a>
+### Setup <a name="Setup"></a>
 To start using the app:
   1. Download and unzip all the files to wherever you want.
   2. Go to the location of the downloaded files and run the command:
@@ -22,12 +22,12 @@ To start using the app:
   ``` 
    or just open main.py with any editor and run it.
 
-### [Status]  <a name="Status"></a>
+### Status  <a name="Status"></a>
 - This is an ongoing project.
 
-### [Authors]  <a name="Authors"></a>
+### Authors  <a name="Authors"></a>
 - yuenby
 - dor-uk
 
-### [License]  <a name="License"></a>
+### License  <a name="License"></a>
 [MIT](https://choosealicense.com/licenses/mit/)
