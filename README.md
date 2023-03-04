@@ -20,7 +20,7 @@ To start using the app:
   ```bash
   python3 main.py
   ``` 
-    or just open main.py with any editor and run it.
+   or just open main.py with any editor and run it.
 
 ### Status  <a name="Status"></a>
 - This is an ongoing project.
